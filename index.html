@@ -190,6 +190,15 @@
   .search-bar input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,58,92,0.08); }
   .search-bar button { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border: none; padding: 13px 24px; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
   .search-bar button:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,58,92,0.25); }
+  .flow-title { text-align:center; margin-bottom:28px; }
+  .flow-title h2 { font-family:'Amiri',serif; color:var(--primary); font-size:30px; margin-bottom:8px; }
+  .flow-title p { color:var(--text-muted); font-size:14px; }
+  .flow-back { display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; color:var(--primary); background:var(--white); border:1px solid var(--border); padding:9px 16px; border-radius:10px; font-family:'Cairo',sans-serif; cursor:pointer; font-weight:600; }
+  .flow-back:hover { border-color:var(--gold); color:var(--primary); box-shadow:var(--card-shadow); }
+  .flow-card .cat-icon { background:linear-gradient(135deg,#eef5ff,#fff7e6); }
+  .flow-card.selected { border-color:var(--gold); box-shadow:0 8px 24px rgba(201,168,76,.2); }
+  .flow-breadcrumb { text-align:center; color:var(--text-muted); font-size:13px; margin:-14px 0 26px; }
+
   @media (max-width: 768px) {
     nav { padding: 0 16px; }
     .nav-links { display: none; }
@@ -215,13 +224,11 @@
       <div class="logo-icon">🦂</div>
       <div class="logo-text"><strong>سلسلة ملازم العقرب</strong><span>الدراسات الاجتماعية</span></div>
     </a>
-    <ul class="nav-links">
-      <li><a href="javascript:void(0)" class="active" id="nav-home" onclick="showPage('home')">الرئيسية</a></li>
-      <li><a href="javascript:void(0)" id="nav-products" onclick="showPage('products')">الملازم</a></li>
-      <li><a href="javascript:void(0)" id="nav-videos" onclick="showPage('videos')">📽️ بوربوينت</a></li>
-      <li><a href="javascript:void(0)" id="nav-about" onclick="showPage('about')">من نحن</a></li>
-      <li><a href="javascript:void(0)" id="nav-contact" onclick="showPage('contact')">تواصل معنا</a></li>
-    </ul>
+  <ul class="nav-links">
+  <li><a href="javascript:void(0)" class="active" id="nav-home" onclick="showPage('home')">الرئيسية</a></li>
+  <li><a href="javascript:void(0)" id="nav-about" onclick="showPage('about')">من نحن</a></li>
+  <li><a href="javascript:void(0)" id="nav-contact" onclick="showPage('contact')">تواصل معنا</a></li>
+</ul>
     <div class="nav-actions">
       <a class="btn-cart" href="https://wa.me/201027256714" target="_blank">💬 واتساب</a>
     </div>
@@ -243,7 +250,7 @@
       <h1>سلسلة ملازم <span>العقرب</span><br>في الدراسات الاجتماعية</h1>
       <p>أفضل الملازم والمراجع الدراسية في الدراسات الاجتماعية، معدّة بعناية لجميع المراحل التعليمية</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="showPage('products')">🛍️ تصفح الملازم</button>
+        <button class="btn-primary" onclick="showPage('categories')">🛍️ تصفح الملازم</button>
         <button class="btn-secondary" onclick="showPage('videos')">📽️ اطلع على البوربوينت</button>
         <button class="btn-outline" onclick="showPage('about')">اعرف أكتر عنا</button>
       </div>
@@ -258,10 +265,12 @@
   <div class="section">
     <div class="section-header"><div class="section-tag">المراحل الدراسية</div><h2>تصفح حسب المرحلة</h2><div class="divider"></div></div>
     <div class="categories-grid">
-      <a class="cat-card" href="javascript:void(0)" onclick="filterProducts('ابتدائي')"><div class="cat-icon" style="background:linear-gradient(135deg,#e8f4fd,#d0e8fa);">🎒</div><h3>ابتدائي</h3><span>دراسات اجتماعية</span></a>
-      <a class="cat-card" href="javascript:void(0)" onclick="filterProducts('إعدادي')"><div class="cat-icon" style="background:linear-gradient(135deg,#e8f8f0,#c8ecd8);">🗺️</div><h3>إعدادي</h3><span>دراسات اجتماعية</span></a>
-      <a class="cat-card" href="javascript:void(0)" onclick="filterProducts('ثانوي')"><div class="cat-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">🏛️</div><h3>ثانوي</h3><span>دراسات اجتماعية</span></a>
-      <a class="cat-card" href="javascript:void(0)" onclick="filterProducts('مراجعة نهائية')"><div class="cat-icon" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">📝</div><h3>مراجعة نهائية</h3><span>امتحانات وتوقعات</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('ابتدائي')"><div class="cat-icon" style="background:linear-gradient(135deg,#e8f4fd,#d0e8fa);">🎒</div><h3>ابتدائي</h3><span>دراسات اجتماعية</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('إعدادي')"><div class="cat-icon" style="background:linear-gradient(135deg,#e8f8f0,#c8ecd8);">🗺️</div><h3>إعدادي</h3><span>دراسات اجتماعية</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('ثانوي')"><div class="cat-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">🏛️</div><h3>ثانوي</h3><span>دراسات اجتماعية</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('أطلس الخرائط')"><div class="cat-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">🏛️</div><h3>أطلس الخرائط</h3><span>دراسات اجتماعية</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('تدريبات من واقع الامتحانات')"><div class="cat-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">🏛️</div><h3>تدريبات من واقع الامتحانات</h3><span>دراسات اجتماعية</span></a>
+      <a class="cat-card" href="javascript:void(0)" onclick="selectBrowseCategory('مراجعة نهائية')"><div class="cat-icon" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">📝</div><h3>مراجعة نهائية</h3><span>امتحانات وتوقعات</span></a>
     </div>
   </div>
 
@@ -311,7 +320,71 @@
     <div class="products-grid" id="all-products-grid"></div>
   </div>
 </div>
-
+<!-- ===== TERM SELECTION ===== -->
+<div class="page" id="page-categories">
+  <div style="background:linear-gradient(160deg,var(--darker),var(--dark),#122a4a);padding:50px 40px;text-align:center;">
+    <h1 style="font-family:'Amiri',serif;font-size:38px;color:#fff;margin-bottom:12px;">📚 اختر الترم</h1>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;">اختار الترم لعرض <span id="selected-browse-title">كل المحتوى</span></p>
+  </div>
+  <div class="section">
+    <div class="flow-title"><h2>ملازم الدراسات الاجتماعية</h2><p>ابدأ باختيار الترم الدراسي</p></div>
+    <div class="categories-grid">
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectTerm('الترم الأول')"><div class="cat-icon">1️⃣</div><h3>الترم الأول</h3><span>محتوى ومراجعات الترم الأول</span></a>
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectTerm('الترم الثاني')"><div class="cat-icon">2️⃣</div><h3>الترم الثاني</h3><span>محتوى ومراجعات الترم الثاني</span></a>
+    </div>
+  </div>
+</div>
+<!-- ===== SECOND TERM COMING SOON ===== -->
+<div class="page" id="page-term-coming-soon">
+  <div style="background:linear-gradient(160deg,var(--darker),var(--dark),#122a4a);padding:50px 40px;text-align:center;">
+    <h1 style="font-family:'Amiri',serif;font-size:38px;color:#fff;margin-bottom:12px;">⏳ الترم الثاني قريبًا</h1>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;">محتوى الترم الثاني هيتم رفعه قريبًا إن شاء الله</p>
+  </div>
+  <div class="section">
+    <button class="flow-back" onclick="showPage('categories')">→ تغيير الترم</button>
+    <div class="coming-soon-box">
+      <div class="coming-soon-icon">📚</div>
+      <h3>ملفات الترم الثاني قريبًا</h3>
+      <p>بنجهز ملازم الشرح، سؤال وجواب، أطلس الخرائط، التدريبات والمراجعة النهائية للترم الثاني.<br>تابعونا، هنضيف الملفات أول ما تكون جاهزة.</p>
+    </div>
+  </div>
+</div>
+<!-- ===== CONTENT TYPE SELECTION ===== -->
+<div class="page" id="page-term-categories">
+  <div style="background:linear-gradient(160deg,var(--darker),var(--dark),#122a4a);padding:50px 40px;text-align:center;">
+    <h1 style="font-family:'Amiri',serif;font-size:38px;color:#fff;margin-bottom:12px;">📖 <span id="selected-term-title">اختر الترم</span></h1>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;">اختر نوع المحتوى الذي تريد تصفحه</p>
+  </div>
+  <div class="section">
+    <button class="flow-back" onclick="showPage('categories')">→ تغيير الترم</button>
+    <div class="flow-title"><h2>محتوى <span id="selected-term-label">الترم</span></h2><p>وبعدها هتختار المرحلة الدراسية</p></div>
+    <div class="categories-grid">
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectContent('شرح')"><div class="cat-icon">📘</div><h3>ملازم الشرح</h3><span>شرح مبسط ومنظم للمنهج</span></a>
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectContent('سؤال وجواب')"><div class="cat-icon">❓</div><h3>ملازم سؤال وجواب</h3><span>أسئلة وإجابات مهمة</span></a>
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectContent('أطلس الخرائط')"><div class="cat-icon">🗺️</div><h3>أطلس الخرائط</h3><span>خرائط الدراسات الاجتماعية</span></a>
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectContent('تدريبات من واقع الامتحانات')"><div class="cat-icon">📝</div><h3>تدريبات من واقع الامتحانات</h3><span>تدريبات من نماذج الامتحانات</span></a>
+      <a class="cat-card flow-card" href="javascript:void(0)" onclick="selectContent('مراجعة نهائية')"><div class="cat-icon">✅</div><h3>مراجعة نهائية</h3><span>مراجعة مركزة قبل الامتحان</span></a>
+    </div>
+  </div>
+</div>
+<!-- ===== STAGE SELECTION AND ITEMS ===== -->
+<div class="page" id="page-term-items">
+  <div style="background:linear-gradient(160deg,var(--darker),var(--dark),#122a4a);padding:50px 40px;text-align:center;">
+    <h1 style="font-family:'Amiri',serif;font-size:38px;color:#fff;margin-bottom:12px;">🎓 <span id="selected-content-title">المحتوى</span></h1>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;"><span id="items-breadcrumb">الترم</span></p>
+  </div>
+  <div class="section">
+    <button class="flow-back" onclick="showPage('term-categories')">→ تغيير نوع المحتوى</button>
+    <div class="flow-title"><h2>اختر المرحلة الدراسية</h2><p>هتظهر لك الملازم الخاصة بالترم والمحتوى والمرحلة المختارة</p></div>
+    <div class="filters" id="stage-filter-buttons">
+      <button class="filter-btn active" onclick="filterTermItems('الكل', this)">الكل</button>
+      <button class="filter-btn" onclick="filterTermItems('ابتدائي', this)">🎒 ابتدائي</button>
+      <button class="filter-btn" onclick="filterTermItems('إعدادي', this)">📖 إعدادي</button>
+      <button class="filter-btn" onclick="filterTermItems('ثانوي', this)">🏛️ ثانوي</button>
+    </div>
+    <div class="products-grid" id="term-items-grid"></div>
+  </div>
+</div>
 <!-- ===== VIDEOS ===== -->
 <div class="page" id="page-videos">
   <div style="background: linear-gradient(160deg, var(--darker), var(--dark), #122a4a); padding: 50px 40px; text-align: center; position: relative; overflow: hidden;">
@@ -343,7 +416,66 @@
     </div>
   </div>
 </div>
+<!-- ===== MAPS ATLAS ===== -->
+<div class="page" id="page-maps">
 
+  <div style="background: linear-gradient(160deg, var(--darker), var(--dark), #122a4a); padding: 50px 40px; text-align: center; position: relative; overflow: hidden;">
+
+    <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
+
+    <h1 style="font-family:'Amiri',serif; font-size:38px; color:#fff; margin-bottom:12px; position:relative;">
+      🗺️ أطلس الخرائط
+    </h1>
+
+    <p style="color:rgba(255,255,255,0.5); font-size:15px; position:relative;">
+      خرائط الدراسات الاجتماعية لجميع المراحل الدراسية
+    </p>
+
+  </div>
+
+  <div class="section">
+
+    <div class="section-header">
+      <div class="section-tag">خرائط تعليمية</div>
+      <h2>أطلس الخرائط</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="products-grid" id="maps-grid"></div>
+
+  </div>
+
+</div>
+<!-- ===== EXAMS TRAINING ===== -->
+<div class="page" id="page-exams">
+
+  <div style="background: linear-gradient(160deg, var(--darker), var(--dark), #122a4a); padding: 50px 40px; text-align: center; position: relative; overflow: hidden;">
+
+    <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
+
+    <h1 style="font-family:'Amiri',serif; font-size:38px; color:#fff; margin-bottom:12px; position:relative;">
+      📝 تدريبات من واقع الامتحانات
+    </h1>
+
+    <p style="color:rgba(255,255,255,0.5); font-size:15px; position:relative;">
+      تدريبات وأسئلة مستوحاة من امتحانات السنوات السابقة
+    </p>
+
+  </div>
+
+  <div class="section">
+
+    <div class="section-header">
+      <div class="section-tag">تدريبات وامتحانات</div>
+      <h2>تدريبات من واقع الامتحانات</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="products-grid" id="exams-grid"></div>
+
+  </div>
+
+</div>
 <!-- ===== ABOUT ===== -->
 <div class="page" id="page-about">
   <div class="about-hero"><h1>من نحن</h1><p>قصة ملازم العقرب بدأت من حلم بسيط: نوفر لكل طالب في مصر الأدوات الصح عشان ينجح</p></div>
@@ -422,6 +554,7 @@
 var products = [
 {
   id:1,
+  term:'الترم الأول', type:'شرح',
   title:'ملزمة الصف الأول الإعدادي',
   subject:'إعدادي',
   author:'سلسلة العقرب',
@@ -431,7 +564,8 @@ var products = [
 },
 
   { 
-id:2, 
+ term:'الترم الأول', type:'شرح',
+ id:2, 
 title:'ملزمة الصف الثاني الإعدادي', 
 subject:'إعدادي', 
 author:'سلسلة العقرب', 
@@ -441,6 +575,7 @@ badge:null
 },
 
   { 
+  term:'الترم الأول', type:'شرح',
   id:3, 
   title:'ملزمة الصف الثالث الإعدادي', 
   subject:'إعدادي', 
@@ -449,23 +584,55 @@ badge:null
   pdf:'pdfs/book3.pdf', 
   badge:'new' 
 },
-  { id:4, title:'ملزمة الصف الرابع الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
+  { term:'الترم الأول', type:'شرح', id:4, title:'ملزمة الصف الرابع الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
 grade:'الصف الرابع الابتدائي',
 pdf:'pdfs/book4.pdf', badge:'new' },
-  { id:5, title:'ملزمة الصف الخامس الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
+  { term:'الترم الأول', type:'شرح', id:5, title:'ملزمة الصف الخامس الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
 grade:'الصف الخامس الابتدائي',
 pdf:'pdfs/book5.pdf', badge:null },
-  { id:6, title:'ملزمة الصف السادس الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
+  { term:'الترم الأول', type:'شرح', id:6, title:'ملزمة الصف السادس الابتدائي', subject:'ابتدائي', author:'سلسلة العقرب', 
 grade:'الصف السادس الابتدائي',
 pdf:'pdfs/book6.pdf', badge:'الأكثر مبيعاً' },
 
-  { id:7, title:'ملزمة الصف الأول الثانوي', subject:'ثانوي', author:'سلسلة العقرب', 
+  { term:'الترم الأول', type:'شرح', id:7, title:'ملزمة الصف الأول الثانوي', subject:'ثانوي', author:'سلسلة العقرب', 
 grade:'الصف الأول الثانوي',
 pdf:'pdfs/book7.pdf', badge:null },
 
-  { id:8, title:'ملزمة الصف الثاني الثانوي', subject:'ثانوي', author:'سلسلة العقرب', 
+  { term:'الترم الأول', type:'شرح', id:8, title:'ملزمة الصف الثاني الثانوي', subject:'ثانوي', author:'سلسلة العقرب', 
 grade:'الصف الثاني الثانوي (بكالوريا)',
 pdf:'pdfs/book8.pdf', badge:'الأكثر مبيعاً' },
+];
+
+/* ===== MAPS ATLAS ===== */
+var maps = [
+  { id: 1, term: 'الترم الأول', title: 'أطلس خرائط الصف الرابع الابتدائي', grade: 'الصف الرابع الابتدائي', pdf: 'pdfs/atlas_t1_primary_4.pdf' },
+  { id: 2, term: 'الترم الأول', title: 'أطلس خرائط الصف الخامس الابتدائي', grade: 'الصف الخامس الابتدائي', pdf: 'pdfs/atlas_t1_primary_5.pdf' },
+  { id: 3, term: 'الترم الأول', title: 'أطلس خرائط الصف السادس الابتدائي', grade: 'الصف السادس الابتدائي', pdf: 'pdfs/atlas_t1_primary_6.pdf' },
+  { id: 4, term: 'الترم الأول', title: 'أطلس خرائط الصف الأول الإعدادي', grade: 'الصف الأول الإعدادي', pdf: 'pdfs/atlas_t1_preparatory_1.pdf' },
+  { id: 5, term: 'الترم الأول', title: 'أطلس خرائط الصف الثاني الإعدادي', grade: 'الصف الثاني الإعدادي', pdf: 'pdfs/atlas_t1_preparatory_2.pdf' },
+  { id: 6, term: 'الترم الأول', title: 'أطلس خرائط الصف الثالث الإعدادي', grade: 'الصف الثالث الإعدادي', pdf: 'pdfs/atlas_t1_preparatory_3.pdf' }
+];
+
+/* ===== EXAMS TRAINING ===== */
+var exams = [
+  { id: 1, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف الرابع الابتدائي', grade: 'الصف الرابع الابتدائي', pdf: 'pdfs/exams_t1_primary_4.pdf' },
+  { id: 2, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف الخامس الابتدائي', grade: 'الصف الخامس الابتدائي', pdf: 'pdfs/exams_t1_primary_5.pdf' },
+  { id: 3, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف السادس الابتدائي', grade: 'الصف السادس الابتدائي', pdf: 'pdfs/exams_t1_primary_6.pdf' },
+  { id: 4, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف الأول الإعدادي', grade: 'الصف الأول الإعدادي', pdf: 'pdfs/exams_t1_preparatory_1.pdf' },
+  { id: 5, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف الثاني الإعدادي', grade: 'الصف الثاني الإعدادي', pdf: 'pdfs/exams_t1_preparatory_2.pdf' },
+  { id: 6, term: 'الترم الأول', title: 'تدريبات من واقع الامتحانات - الصف الثالث الإعدادي', grade: 'الصف الثالث الإعدادي', pdf: 'pdfs/exams_t1_preparatory_3.pdf' }
+];
+
+/* ===== QUESTIONS AND ANSWERS ===== */
+var qna = [
+  { id: 1, term: 'الترم الأول', title: 'سؤال وجواب الدراسات الاجتماعية - الصف الأول الإعدادي', subject: 'إعدادي', author: 'سلسلة العقرب', grade: 'الصف الأول الإعدادي', pdf: 'pdfs/qna_t1_preparatory_1.pdf', badge: null },
+  { id: 2, term: 'الترم الأول', title: 'سؤال وجواب الدراسات الاجتماعية - الصف الثاني الإعدادي', subject: 'إعدادي', author: 'سلسلة العقرب', grade: 'الصف الثاني الإعدادي', pdf: 'pdfs/qna_t1_preparatory_2.pdf', badge: null },
+  { id: 3, term: 'الترم الأول', title: 'سؤال وجواب الدراسات الاجتماعية - الصف الثالث الإعدادي', subject: 'إعدادي', author: 'سلسلة العقرب', grade: 'الصف الثالث الإعدادي', pdf: 'pdfs/qna_t1_preparatory_3.pdf', badge: null }
+];
+
+/* ===== FINAL REVIEWS ===== */
+var finalReviews = [
+  // ستظهر هذه الخانة «قريبًا» حتى يتم رفع ملفات المراجعة النهائية
 ];
 
 /* ===== VIDEOS ===== */
@@ -559,6 +726,65 @@ function renderProduct(p) {
     '</div>'
   );
 }
+/* ===== RENDER PDF CARD ===== */
+
+function renderPdfCard(item, type) {
+
+  var icon = type === 'maps' ? '🗺️' : '📝';
+
+  return `
+    <div class="product-card">
+
+      <div class="product-cover"
+           style="background:linear-gradient(135deg,#e8f4fd,#fff3e0);">
+
+        <span class="emoji-placeholder">${icon}</span>
+
+      </div>
+
+      <div class="product-body">
+
+        <div class="product-subject">
+          ${item.subject || getSubjectFromGrade(item.grade || item.title || '')} · ${type === 'maps' ? 'أطلس الخرائط' : 'تدريبات امتحانات'}
+        </div>
+
+        <div class="product-title">
+          ${item.title}
+        </div>
+
+        <div class="product-author">
+          🦂 سلسلة العقرب
+        </div>
+
+        <div class="product-footer">
+
+          <div style="display:flex;gap:8px;">
+
+            <a href="javascript:void(0)"
+               onclick="openPdfViewer('${item.pdf}')"
+               style="flex:1;text-align:center;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;padding:10px;border-radius:10px;text-decoration:none;font-weight:700;">
+
+              👁️ معاينة
+
+            </a>
+
+            <a href="${item.pdf}"
+               download
+               style="flex:1;text-align:center;background:linear-gradient(135deg,#16a34a,#15803d);color:white;padding:10px;border-radius:10px;text-decoration:none;font-weight:700;">
+
+              ⬇️ تحميل
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
 /* ===== RENDER VIDEO ===== */
 function renderVideo(v) {
   return '<div class="video-card" data-subject="'+v.subject+'">' +
@@ -598,21 +824,99 @@ function filterVideos(subject, btn) {
   initVideos(subject);
 }
 
-/* ===== INIT PRODUCTS ===== */
-function initFeatured(){var f=products.filter(function(p){return p.badge&&p.badge!=='قريبًا';}).slice(0,4),g=document.getElementById('featured-grid');if(g)g.innerHTML=f.map(renderProduct).join('');}
+/* ===== TERM-AWARE BROWSING ===== */
+var selectedTerm = 'الترم الأول';
+var selectedContent = 'شرح';
+var selectedStage = 'الكل';
+
+function selectBrowseCategory(category) {
+  if (category === 'ابتدائي' || category === 'إعدادي' || category === 'ثانوي') {
+    selectedContent = 'الكل';
+    selectedStage = category;
+  } else {
+    selectedContent = category === 'أطلس الخرائط' ? 'أطلس الخرائط' : category === 'تدريبات من واقع الامتحانات' ? 'تدريبات من واقع الامتحانات' : 'مراجعة نهائية';
+    selectedStage = 'الكل';
+  }
+  document.getElementById('selected-browse-title').textContent = category;
+  showPage('categories');
+}
+
+function selectTerm(term) {
+  selectedTerm = term;
+  if (term === 'الترم الثاني') {
+    showPage('term-coming-soon');
+    return;
+  }
+  if (selectedContent === 'الكل') {
+    document.getElementById('selected-content-title').textContent = selectedStage === 'الكل' ? 'كل الملفات' : selectedStage;
+    document.getElementById('items-breadcrumb').textContent = selectedTerm + ' · ' + (selectedStage === 'الكل' ? 'كل الملفات' : selectedStage);
+    showPage('term-items');
+    filterTermItems(selectedStage);
+    return;
+  }
+  document.getElementById('selected-term-title').textContent = term;
+  document.getElementById('selected-term-label').textContent = term;
+  showPage('term-categories');
+}
+
+function selectContent(content) {
+  selectedContent = content;
+  document.getElementById('selected-content-title').textContent = content;
+  document.getElementById('items-breadcrumb').textContent = selectedTerm + ' · ' + content;
+  showPage('term-items');
+  filterTermItems('الكل');
+}
+
+function normalizeItem(item, type, term) {
+  return Object.assign({}, item, { type:type, term:item.term || term, subject:item.subject || getSubjectFromGrade(item.grade || item.title || '') });
+}
+function getSubjectFromGrade(text) {
+  if (text.indexOf('ابتدائي') !== -1) return 'ابتدائي';
+  if (text.indexOf('إعدادي') !== -1) return 'إعدادي';
+  if (text.indexOf('ثانوي') !== -1) return 'ثانوي';
+  return 'الكل';
+}
+function getTermItems() {
+  var all = [];
+  products.forEach(function(p){ all.push(normalizeItem(p, 'شرح', 'الترم الأول')); });
+  maps.forEach(function(p){ all.push(normalizeItem(p, 'أطلس الخرائط', 'الترم الأول')); });
+  exams.forEach(function(p){ all.push(normalizeItem(p, 'تدريبات من واقع الامتحانات', 'الترم الأول')); });
+  qna.forEach(function(p){ all.push(normalizeItem(p, 'سؤال وجواب', 'الترم الأول')); });
+  finalReviews.forEach(function(p){ all.push(normalizeItem(p, 'مراجعة نهائية', 'الترم الأول')); });
+  return all.filter(function(p){ return p.term === selectedTerm && (selectedContent === 'الكل' || p.type === selectedContent); });
+}
+function filterTermItems(stage, btn) {
+  var buttons = document.querySelectorAll('#stage-filter-buttons .filter-btn');
+  for (var i=0;i<buttons.length;i++) buttons[i].classList.remove('active');
+  if (btn) btn.classList.add('active');
+  var items = getTermItems();
+  if (stage !== 'الكل') items = items.filter(function(p){ return p.subject === stage; });
+  var grid = document.getElementById('term-items-grid');
+  if (!grid) return;
+  grid.innerHTML = items.length ? items.map(function(p){ return p.type === 'أطلس الخرائط' || p.type === 'تدريبات من واقع الامتحانات' ? renderPdfCard(p, p.type === 'أطلس الخرائط' ? 'maps' : 'exams') : renderProduct(p); }).join('') : '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1;padding:40px;">قريبًا إن شاء الله — سيتم رفع الملفات وتجهيزها لهذا القسم.</p>';
+}
+
+/* ===== LEGACY PRODUCTS ===== */
+function renderFeaturedProduct(p){
+  var card = renderProduct(p);
+  var category = p.subject || 'ابتدائي';
+  return card.replace('<div class="product-card">', '<div class="product-card featured-product-card" onclick="selectBrowseCategory(\'' + category + '\')">');
+}
+function initFeatured(){var f=products.filter(function(p){return p.badge&&p.badge!=='قريبًا';}).slice(0,4),g=document.getElementById('featured-grid');if(g)g.innerHTML=f.map(renderFeaturedProduct).join('');}
 function initAllProducts(){var g=document.getElementById('all-products-grid');if(g)g.innerHTML=products.map(renderProduct).join('');}
 function filterBySubject(s,btn){var bs=document.querySelectorAll('#filter-buttons .filter-btn');for(var i=0;i<bs.length;i++)bs[i].classList.remove('active');if(btn)btn.classList.add('active');var fl=s==='الكل'?products:products.filter(function(p){return p.subject===s;});var g=document.getElementById('all-products-grid');if(g)g.innerHTML=fl.map(renderProduct).join('');}
 function filterProducts(s){showPage('products');setTimeout(function(){var bs=document.querySelectorAll('#filter-buttons .filter-btn'),fd=null;for(var i=0;i<bs.length;i++){if(bs[i].textContent.trim().indexOf(s)!==-1){fd=bs[i];break;}}if(fd)filterBySubject(s,fd);},100);}
 function searchProducts(){var q=(document.getElementById('search-input').value||'').toLowerCase(),fl=products.filter(function(p){return p.title.toLowerCase().indexOf(q)!==-1||p.subject.toLowerCase().indexOf(q)!==-1||p.author.toLowerCase().indexOf(q)!==-1;}),g=document.getElementById('all-products-grid');if(g)g.innerHTML=fl.length?fl.map(renderProduct).join(''):'<p style="text-align:center;color:var(--text-muted);grid-column:1/-1;padding:40px;">لا توجد نتائج مطابقة 😔</p>';}
+function initMaps(){var g=document.getElementById('maps-grid');if(g)g.innerHTML=maps.map(function(item){return renderPdfCard(item,'maps');}).join('');}
+function initExams(){var g=document.getElementById('exams-grid');if(g)g.innerHTML=exams.map(function(item){return renderPdfCard(item,'exams');}).join('');}
 
 /* ===== NAVIGATION ===== */
 function showPage(n){
-  var ps=document.querySelectorAll('.page');for(var i=0;i<ps.length;i++)ps[i].classList.remove('active');
-  var p=document.getElementById('page-'+n);if(p)p.classList.add('active');
-  var ns=document.querySelectorAll('.nav-links a');for(var j=0;j<ns.length;j++)ns[j].classList.remove('active');
-  var ne=document.getElementById('nav-'+n);if(ne)ne.classList.add('active');
-  if(n==='products')initAllProducts();
-  if(n==='videos')initVideos('الكل');
+  var ps=document.querySelectorAll('.page'); for(var i=0;i<ps.length;i++)ps[i].classList.remove('active');
+  var p=document.getElementById('page-'+n); if(p)p.classList.add('active');
+  var ns=document.querySelectorAll('.nav-links a'); for(var j=0;j<ns.length;j++)ns[j].classList.remove('active');
+  var ne=document.getElementById('nav-'+n); if(ne)ne.classList.add('active');
+  if(n==='products')initAllProducts(); if(n==='videos')initVideos('الكل'); if(n==='maps')initMaps(); if(n==='exams')initExams();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
